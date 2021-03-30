@@ -1,6 +1,6 @@
 import $ from "jquery";
 import _ from "lodash";
-
+import * as popovers from "./popovers";
 import * as colorspace from "./colorspace";
 import * as message_view_header from "./message_view_header";
 import * as subs from "./subs";
@@ -164,7 +164,9 @@ function picker_do_change_color(color) {
     const stream_id = Number.parseInt($(this).attr("stream_id"), 10);
     const hex_color = color.toHexString();
     subs.set_color(stream_id, hex_color);
+    popovers.hide_all();
 }
+
 subscriptions_table_colorpicker_options.change = picker_do_change_color;
 
 export const sidebar_popover_colorpicker_options = {
@@ -185,5 +187,5 @@ export const sidebar_popover_colorpicker_options_full = {
     cancelText: "",
     chooseText: i18n.t("Confirm"),
     palette: stream_color_palette,
-    change: picker_do_change_color,
+    change: picker_do_change_color,    
 };
